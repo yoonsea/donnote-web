@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DonNote — シンプル家計簿、資産を一目で</title>
+  <meta name="description" content="支出・収入・振替からクレジットカード分割払いまで。資産残高が自動で反映される家計簿。iCloudで全てのデバイスと同期。">
+  <meta name="keywords" content="家計簿,資産管理,支出管理,収入,分割払い,クレジットカード,資産,銀行口座,ローン,株式,iCloud,同期,個人財務,統計,予算">
+  <meta property="og:title" content="DonNote — シンプル家計簿、資産を一目で">
+  <meta property="og:description" content="支出・収入・振替からクレジットカード分割払いまで。資産残高が自動で反映される家計簿。">
+  <meta property="og:type" content="website">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #6366F1;
+      --primary-light: #EEF2FF;
+      --text: #1A1A2E;
+      --text-secondary: #555;
+      --bg: #FFFFFF;
+      --bg-alt: #F8F9FA;
+      --border: #E9ECEF;
+      --radius: 16px;
+    }
+
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif; color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 24px; }
+    nav .nav-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+    nav .logo { font-size: 20px; font-weight: 700; color: var(--primary); text-decoration: none; }
+    nav .nav-links a { color: var(--text-secondary); text-decoration: none; margin-left: 32px; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+    nav .nav-links a:hover { color: var(--primary); }
+
+    .hero { padding: 160px 24px 100px; text-align: center; background: linear-gradient(180deg, var(--primary-light) 0%, var(--bg) 100%); }
+    .hero h1 { font-size: 48px; font-weight: 800; line-height: 1.3; margin-bottom: 20px; letter-spacing: -1px; }
+    .hero h1 span { color: var(--primary); }
+    .hero p { font-size: 18px; color: var(--text-secondary); max-width: 540px; margin: 0 auto 40px; }
+    .hero .cta { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: #fff; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-size: 16px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
+    .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .hero .cta svg { width: 20px; height: 20px; }
+
+    section { padding: 100px 24px; }
+    section.alt { background: var(--bg-alt); }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { font-size: 36px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .section-title p { font-size: 16px; color: var(--text-secondary); }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 28px; transition: transform 0.2s, box-shadow 0.2s; }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    .feature-icon { width: 48px; height: 48px; background: var(--primary-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+    .feature-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; text-align: center; }
+    .step-num { width: 48px; height: 48px; background: var(--primary); color: #fff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+    .steps h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .steps p { font-size: 14px; color: var(--text-secondary); }
+
+    .cta-section { text-align: center; background: var(--text); color: #fff; }
+    .cta-section h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; }
+    .cta-section p { font-size: 16px; opacity: 0.7; margin-bottom: 36px; }
+    .cta-section .cta { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--text); padding: 16px 32px; border-radius: 50px; text-decoration: none; font-size: 16px; font-weight: 600; transition: transform 0.2s; }
+    .cta-section .cta:hover { transform: translateY(-2px); }
+
+    footer { padding: 48px 24px; text-align: center; border-top: 1px solid var(--border); }
+    footer p { font-size: 13px; color: var(--text-secondary); }
+    footer a { color: var(--text-secondary); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--primary); }
+    footer .footer-links { margin-bottom: 16px; }
+
+    .lang-switcher { position: relative; margin-left: 24px; }
+    .lang-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 14px; font-weight: 500; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: color 0.2s, border-color 0.2s; font-family: inherit; }
+    .lang-btn:hover { color: var(--primary); border-color: var(--primary); }
+    .lang-dropdown { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #fff; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-width: 120px; overflow: hidden; z-index: 200; }
+    .lang-switcher:hover .lang-dropdown, .lang-switcher.open .lang-dropdown { display: block; }
+    .lang-dropdown a { display: block; padding: 10px 16px; font-size: 14px; color: var(--text-secondary); text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .lang-dropdown a:hover { background: var(--bg-alt); color: var(--primary); }
+    .lang-dropdown a.active { color: var(--primary); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 32px; }
+      .section-title h2 { font-size: 28px; }
+      .cta-section h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">DonNote</a>
+      <div class="nav-links">
+        <a href="#features">機能</a>
+        <a href="#how">使い方</a>
+        <a href="support.html">サポート</a>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn">🌐 日本語 ▾</button>
+        <div class="lang-dropdown">
+          <a href="../index.html">한국어</a>
+          <a href="../en/index.html">English</a>
+          <a href="index.html" class="active">日本語</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>家計簿の新しい基準<br><span>DonNote</span></h1>
+    <p>支出・収入・振替からクレジットカード分割払いまで。資産残高が自動で反映されるシンプルな家計簿。iCloudですべてのデバイスと同期。</p>
+    <a href="#" class="cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Storeでダウンロード
+    </a>
+  </section>
+
+  <section id="features" class="alt">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>主な機能</h2>
+        <p>家計管理に必要なすべてを1つのアプリで</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💸</div>
+          <h3>簡単な取引記録</h3>
+          <p>支出・収入・振替を1画面で素早く入力。3桁区切りの自動表示で入力が快適です。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💳</div>
+          <h3>資産の一元管理</h3>
+          <p>銀行口座・現金・デビット・クレジット・ローン・株式まで。すべての資産と純資産を一目で。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>残高の自動反映</h3>
+          <p>取引を記録すると資産残高が自動で更新。手動で計算する必要はありません。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>月別統計チャート</h3>
+          <p>ドーナツチャートとカテゴリ別分析で、毎月の支出内訳が一目でわかります。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>クレジットカード分割払い</h3>
+          <p>2〜24回の分割払いを自動生成、利息も計算。毎月の請求フローを正確に反映します。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
+          <h3>iCloud同期</h3>
+          <p>iPhone・iPadのすべてのデバイスで取引と資産が自動同期。追加設定は不要です。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Face IDロック</h3>
+          <p>機密性の高い金融情報をFace ID・Touch IDで安全に保護します。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏷️</div>
+          <h3>カテゴリのカスタマイズ</h3>
+          <p>絵文字と色で自分だけのカテゴリを自由に作成・並び替えできます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💾</div>
+          <h3>CSV・JSONエクスポート</h3>
+          <p>取引履歴をExcel互換のCSVで、全データをJSONでバックアップできます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>使い方</h2>
+        <p>3ステップで始める家計管理</p>
+      </div>
+      <div class="steps">
+        <div>
+          <div class="step-num">1</div>
+          <h3>資産を登録</h3>
+          <p>銀行口座、カード、現金など保有資産を登録し、現在の残高を入力します。</p>
+        </div>
+        <div>
+          <div class="step-num">2</div>
+          <h3>取引を記録</h3>
+          <p>支出・収入・振替を素早く入力すると、資産残高が自動で更新されます。</p>
+        </div>
+        <div>
+          <div class="step-num">3</div>
+          <h3>統計をチェック</h3>
+          <p>月別チャートとカテゴリ分析で支出パターンを把握し、予算を調整しましょう。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="section-inner">
+      <h2>今日から家計管理を始めよう</h2>
+      <p>無料でダウンロードし、すべての主要機能をお試しください。</p>
+      <a href="#" class="cta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        無料ダウンロード
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="support.html">サポート</a>
+      <a href="support.html#terms">利用規約</a>
+      <a href="support.html#privacy">プライバシーポリシー</a>
+    </div>
+    <p style="margin-bottom: 10px;">&copy; 2026 DonNote. All rights reserved.</p>
+    <p style="font-size: 12px; color: #aaa; max-width: 600px; margin: 0 auto;">DonNoteは個人の家計管理を支援するアプリであり、投資助言や税務助言は提供しません。財務に関する決定は専門家にご相談ください。</p>
+  </footer>
+
+</body>
+</html>

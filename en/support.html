@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DonNote — Support</title>
+  <meta name="description" content="Need help with DonNote? Check our FAQ and contact information.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #6366F1;
+      --primary-light: #EEF2FF;
+      --text: #1A1A2E;
+      --text-secondary: #555;
+      --bg: #FFFFFF;
+      --bg-alt: #F8F9FA;
+      --border: #E9ECEF;
+      --radius: 16px;
+    }
+
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0 24px; }
+    nav .nav-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+    nav .logo { font-size: 20px; font-weight: 700; color: var(--primary); text-decoration: none; }
+    nav .nav-links a { color: var(--text-secondary); text-decoration: none; margin-left: 32px; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+    nav .nav-links a:hover { color: var(--primary); }
+
+    .lang-switcher { position: relative; margin-left: 24px; }
+    .lang-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 14px; font-weight: 500; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: color 0.2s, border-color 0.2s; font-family: inherit; }
+    .lang-btn:hover { color: var(--primary); border-color: var(--primary); }
+    .lang-dropdown { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #fff; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-width: 120px; overflow: hidden; z-index: 200; }
+    .lang-switcher:hover .lang-dropdown, .lang-switcher.open .lang-dropdown { display: block; }
+    .lang-dropdown a { display: block; padding: 10px 16px; font-size: 14px; color: var(--text-secondary); text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .lang-dropdown a:hover { background: var(--bg-alt); color: var(--primary); }
+    .lang-dropdown a.active { color: var(--primary); font-weight: 600; }
+
+    .page-header { padding: 140px 24px 60px; text-align: center; background: linear-gradient(180deg, var(--primary-light) 0%, var(--bg) 100%); }
+    .page-header h1 { font-size: 40px; font-weight: 800; margin-bottom: 12px; letter-spacing: -1px; }
+    .page-header p { font-size: 16px; color: var(--text-secondary); }
+
+    .content { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+    .content section { margin-bottom: 56px; }
+    .content h2 { font-size: 24px; font-weight: 700; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--primary-light); }
+
+    .faq-item { margin-bottom: 20px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .faq-item details { padding: 0; }
+    .faq-item summary { padding: 20px 24px; font-size: 16px; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+    .faq-item summary:hover { background: var(--bg-alt); }
+    .faq-item summary::after { content: '+'; font-size: 20px; font-weight: 300; color: var(--text-secondary); transition: transform 0.2s; }
+    .faq-item details[open] summary::after { content: '−'; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-answer { padding: 0 24px 20px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+
+    .contact-card { background: var(--bg-alt); border-radius: var(--radius); padding: 36px; text-align: center; }
+    .contact-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+    .contact-email { display: inline-block; background: var(--primary); color: #fff; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-size: 16px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
+    .contact-email:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25); }
+
+    .privacy-text { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+    .privacy-text h3 { font-size: 17px; font-weight: 600; color: var(--text); margin: 28px 0 8px; }
+    .privacy-text h3:first-child { margin-top: 0; }
+    .privacy-text ul { margin: 8px 0 8px 20px; }
+    .privacy-text li { margin-bottom: 4px; }
+
+    footer { padding: 48px 24px; text-align: center; border-top: 1px solid var(--border); }
+    footer p { font-size: 13px; color: var(--text-secondary); }
+    footer a { color: var(--text-secondary); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--primary); }
+    footer .footer-links { margin-bottom: 16px; }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 28px; }
+      .content h2 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">DonNote</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn">🌐 English ▾</button>
+        <div class="lang-dropdown">
+          <a href="../support.html">한국어</a>
+          <a href="support.html" class="active">English</a>
+          <a href="../ja/support.html">日本語</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Support</h1>
+    <p>How can we help you today?</p>
+  </div>
+
+  <div class="content">
+
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <details>
+          <summary>Is DonNote free?</summary>
+          <div class="faq-answer">Yes. DonNote is free to download with all core features included: transaction logging, asset management, statistics, and iCloud sync. To remove ads and support the developer, you can subscribe to Premium.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How much is the Premium subscription?</summary>
+          <div class="faq-answer">Premium is available at ₩2,500 / month or ₩20,000 / year (≈ ₩1,667/month, 33% off). Subscribing removes all ads across the app.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Can I use the app across multiple devices?</summary>
+          <div class="faq-answer">Yes. Transactions, assets, and categories sync automatically across iPhone and iPad signed in to the same Apple ID via iCloud. No separate sign-up required.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How do I record credit card installments?</summary>
+          <div class="faq-answer">Select a credit card as the payment method on the transaction screen, then choose installment months (2–24) and annual interest rate. Per-installment transactions are automatically generated monthly, using equal-principal repayment with interest on remaining balance.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How do I log loan principal repayment?</summary>
+          <div class="faq-answer">Use a transfer transaction. Select your bank account as the "from" asset and the loan as the "to" asset. The loan balance decreases as you repay the principal.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How are asset balances calculated?</summary>
+          <div class="faq-answer">Balances update automatically when you log transactions. Expenses decrease the asset's balance; income increases it. Transfers decrease the source and increase the destination. Edits and deletes adjust balances accordingly.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Can I export my data?</summary>
+          <div class="faq-answer">Yes. From Settings, you can export transactions to Excel-compatible CSV, or back up all data as JSON. JSON backups can be restored within the app.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Can I lock the app with Face ID or Touch ID?</summary>
+          <div class="faq-answer">Yes. Enable biometric lock under Settings → Security. The app locks when sent to background, and sensitive information is hidden until unlocked.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Can I customize categories?</summary>
+          <div class="faq-answer">Yes. Add, edit, delete, and reorder categories from Settings → Category Management. Choose your own emojis and colors. You can also create new categories instantly from the transaction screen.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Does it support foreign currencies?</summary>
+          <div class="faq-answer">Yes. Assets can be set to USD, JPY, and other currencies. Exchange rates are fetched automatically for KRW conversion display. The rate at the time of each transaction is snapshotted, so historical KRW values stay accurate.</div>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <p>Can't find your answer in the FAQ?<br>Email us and we'll get back to you as soon as possible.</p>
+        <a href="mailto:yoonseok84@gmail.com" class="contact-email">yoonseok84@gmail.com</a>
+      </div>
+    </section>
+
+    <section id="terms">
+      <h2>Terms of Use</h2>
+      <div class="privacy-text">
+        <p>By downloading or using DonNote, you agree to be bound by the Apple Standard End User License Agreement (EULA).</p>
+        <p style="margin-top: 16px;"><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" style="color: var(--primary);">View Apple Standard EULA</a></p>
+
+        <h3 style="margin-top: 28px;">Disclaimer</h3>
+        <p>DonNote is a personal ledger app. It <strong>does not provide investment, tax, or accounting advice</strong>, and must not be relied upon for financial decisions.</p>
+        <p style="margin-top: 12px;">Statistics, balance calculations, currency conversions, and installment interest calculations are based on user input and are provided for reference only. Accuracy is not guaranteed. <strong>Always consult qualified professionals before making significant financial decisions.</strong></p>
+
+        <h3>Subscription</h3>
+        <p>DonNote offers an optional auto-renewing subscription (DonNote Premium) that provides additional benefits such as ad removal. By subscribing, you agree to the following:</p>
+        <ul>
+          <li>Available at ₩2,500 / month or ₩20,000 / year.</li>
+          <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period.</li>
+          <li>Payment is charged to your Apple ID account upon confirmation.</li>
+          <li>You can manage or cancel subscriptions in your App Store account settings.</li>
+        </ul>
+
+        <h3>Advertisements</h3>
+        <p>Free users will see ads from Google AdMob on certain screens. All ads are removed for Premium subscribers.</p>
+
+        <h3>Contact</h3>
+        <p>For inquiries regarding these terms, please contact <a href="mailto:yoonseok84@gmail.com" style="color: var(--primary);">yoonseok84@gmail.com</a>.</p>
+
+        <p style="margin-top: 28px; font-size: 13px;">Effective Date: January 1, 2026</p>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <h2>Privacy Policy</h2>
+      <div class="privacy-text">
+        <h3>1. Information We Collect</h3>
+        <p>DonNote processes the following information that you enter:</p>
+        <ul>
+          <li>Transaction details (amount, category, memo, date, etc.)</li>
+          <li>Asset information (name, type, balance, currency, etc.)</li>
+          <li>Categories and user preferences</li>
+        </ul>
+        <p style="margin-top: 8px;">We do not require account creation or collect personally identifiable information (name, email, phone number).</p>
+
+        <h3>2. Where Data Is Stored</h3>
+        <p>All data is stored on your device and in <strong>your personal iCloud account</strong>. The developer cannot access your data, and no separate server is maintained.</p>
+
+        <h3>3. iCloud Sync</h3>
+        <p>iCloud sync uses Apple's CloudKit infrastructure. Data is stored only in the private database linked to your Apple ID and cannot be accessed by other users or the developer.</p>
+
+        <h3>4. Third-Party Services</h3>
+        <p>The following third-party services are used for certain features:</p>
+        <ul>
+          <li><strong>Exchange Rate API</strong>: Used to fetch public exchange rate data for foreign currency conversion. No user data is transmitted.</li>
+          <li><strong>Stock Price API</strong>: Used to fetch public stock price data for stock assets. No user data is transmitted.</li>
+          <li><strong>Google AdMob</strong>: Used to display ads to free users. AdMob may use identifiers for ad personalization, controlled by iOS tracking permission settings. Premium subscribers see no ads, and these identifiers are not used.</li>
+        </ul>
+
+        <h3>5. Data Deletion</h3>
+        <p>You can delete individual transactions and assets within the app, or remove all data via "Delete All Data" in Settings. Deleting the app removes data from your device, but iCloud-stored data must be separately deleted via iCloud settings.</p>
+
+        <h3>6. Children's Privacy</h3>
+        <p>This app is not directed at children under 13 and does not knowingly collect personal information from children.</p>
+
+        <h3>7. Policy Changes</h3>
+        <p>This Privacy Policy may change with app updates. Any changes will be posted on this page.</p>
+
+        <h3>8. Contact</h3>
+        <p>For inquiries regarding this Privacy Policy, please contact <a href="mailto:yoonseok84@gmail.com" style="color: var(--primary);">yoonseok84@gmail.com</a>.</p>
+
+        <p style="margin-top: 28px; font-size: 13px;">Effective Date: January 1, 2026</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="#faq">FAQ</a>
+      <a href="#terms">Terms of Use</a>
+      <a href="#privacy">Privacy Policy</a>
+    </div>
+    <p>&copy; 2026 DonNote. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
